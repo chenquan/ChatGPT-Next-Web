@@ -405,6 +405,11 @@ function useScrollToBottom() {
   };
 }
 
+const modelMap = new Map([
+  ["gemini-pro", 0],
+  ["gpt-3.5-turbo-1106", 1],
+]);
+
 export function ChatActions(props: {
   showPromptModal: () => void;
   scrollToBottom: () => void;
@@ -417,6 +422,7 @@ export function ChatActions(props: {
 
   // switch themes
   const theme = config.theme;
+
   function nextTheme() {
     const themes = [Theme.Auto, Theme.Light, Theme.Dark];
     const themeIndex = themes.indexOf(theme);
@@ -432,10 +438,25 @@ export function ChatActions(props: {
   // switch model
   const currentModel = chatStore.currentSession().mask.modelConfig.model;
   const allModels = useAllModels();
-  const models = useMemo(
-    () => allModels.filter((m) => m.available),
-    [allModels],
+  let models = useMemo(() => allModels.filter((m) => m.available), [allModels]);
+
+  let geminiProName = "gemini-pro";
+  let turbo1106Name = "gpt-3.5-turbo-1106";
+  let newModels = models.filter(
+    (it) => it.name !== geminiProName && it.name !== turbo1106Name,
   );
+  let geminiProModel = models.findLast((it) => it.name === geminiProName);
+  let turbo1106Model = models.findLast((it) => it.name === turbo1106Name);
+
+  if (turbo1106Model) {
+    newModels.unshift(turbo1106Model);
+  }
+  if (geminiProModel) {
+    newModels.unshift(geminiProModel);
+  }
+
+  models = newModels;
+
   const [showModelSelector, setShowModelSelector] = useState(false);
 
   useEffect(() => {
@@ -617,7 +638,6 @@ function _Chat() {
   const session = chatStore.currentSession();
   const config = useAppConfig();
   const fontSize = config.fontSize;
-
   const [showExport, setShowExport] = useState(false);
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -927,6 +947,7 @@ function _Chat() {
   const [msgRenderIndex, _setMsgRenderIndex] = useState(
     Math.max(0, renderMessages.length - CHAT_PAGE_SIZE),
   );
+
   function setMsgRenderIndex(newIndex: number) {
     newIndex = Math.min(renderMessages.length - CHAT_PAGE_SIZE, newIndex);
     newIndex = Math.max(0, newIndex);
@@ -980,7 +1001,6 @@ function _Chat() {
 
   const autoFocus = !isMobileScreen; // wont auto focus on mobile screen
   const showMaxIcon = !isMobileScreen && !clientConfig?.isApp;
-
   useCommand({
     fill: setUserInput,
     submit: (text) => {
