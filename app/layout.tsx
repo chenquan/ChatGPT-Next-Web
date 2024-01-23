@@ -10,7 +10,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 const serverConfig = getServerSideConfig();
 
 export const metadata: Metadata = {
-  title: "AI助手：小边",
+  title: "AI助手: 小边",
   description: "我边边角角都能建议，但最终还是由你决定。",
   viewport: {
     width: "device-width",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "AI助手：小边",
+    title: "AI助手: 小边",
     statusBarStyle: "default",
   },
 };

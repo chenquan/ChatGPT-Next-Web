@@ -156,7 +156,7 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          AI助手：小边
+          AI助手: 小边
         </div>
         <div className={styles["sidebar-sub-title"]}>
           我边边角角都能建议，但最终还是由你决定
