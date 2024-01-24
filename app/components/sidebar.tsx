@@ -222,8 +222,9 @@ export function SideBar(props: { className?: string }) {
           {/*    <IconButton icon={<GithubIcon />} shadow />*/}
           {/*  </a>*/}
           {/*</div>*/}
-          <div className={styles["sidebar-action"]} title={"使用技巧"}>
+          <div>
             <a
+              style={{ textDecoration: "none" }}
               href="https://digiinfr.yuque.com/qwrtr8/lbnlea"
               target="_blank"
               rel="noopener noreferrer"
