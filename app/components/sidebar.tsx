@@ -212,7 +212,7 @@ export function SideBar(props: { className?: string }) {
               }}
             />
           </div>
-          <div className={styles["sidebar-action"]}>
+          <div className={styles["sidebar-action"]} title={"设置"}>
             <Link to={Path.Settings}>
               <IconButton icon={<SettingsIcon />} shadow />
             </Link>
@@ -222,7 +222,7 @@ export function SideBar(props: { className?: string }) {
           {/*    <IconButton icon={<GithubIcon />} shadow />*/}
           {/*  </a>*/}
           {/*</div>*/}
-          <div className={styles["sidebar-action"]}>
+          <div className={styles["sidebar-action"]} title={"帮助"}>
             <a
               href="https://digiinfr.yuque.com/qwrtr8/lbnlea"
               target="_blank"
@@ -235,6 +235,7 @@ export function SideBar(props: { className?: string }) {
         <div>
           <IconButton
             icon={<AddIcon />}
+            title={shouldNarrow ? undefined : Locale.Home.NewChat}
             text={shouldNarrow ? undefined : Locale.Home.NewChat}
             onClick={() => {
               if (config.dontShowMaskSplashScreen) {
