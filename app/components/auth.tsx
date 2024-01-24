@@ -9,6 +9,7 @@ import Locale from "../locales";
 import BotIcon from "../icons/bot.svg";
 import { useEffect } from "react";
 import { getClientConfig } from "../config/client";
+import HelpIcon from "@/app/icons/help.svg";
 
 export function AuthPage() {
   const navigate = useNavigate();
@@ -35,9 +36,17 @@ export function AuthPage() {
       <div className={`no-dark ${styles["auth-logo"]}`}>
         <BotIcon />
       </div>
-
       <div className={styles["auth-title"]}>{Locale.Auth.Title}</div>
-      <div className={styles["auth-tips"]}>{Locale.Auth.Tips}</div>
+      <div className={styles["auth-tips"]}>
+        {Locale.Auth.Tips}
+        <a
+          href="https://digiinfr.yuque.com/qwrtr8/lbnlea"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          帮助手册
+        </a>
+      </div>
 
       <input
         className={styles["auth-input"]}
@@ -50,33 +59,33 @@ export function AuthPage() {
           );
         }}
       />
-      {!accessStore.hideUserApiKey ? (
-        <>
-          <div className={styles["auth-tips"]}>{Locale.Auth.SubTips}</div>
-          <input
-            className={styles["auth-input"]}
-            type="password"
-            placeholder={Locale.Settings.Access.OpenAI.ApiKey.Placeholder}
-            value={accessStore.openaiApiKey}
-            onChange={(e) => {
-              accessStore.update(
-                (access) => (access.openaiApiKey = e.currentTarget.value),
-              );
-            }}
-          />
-          <input
-            className={styles["auth-input"]}
-            type="password"
-            placeholder={Locale.Settings.Access.Google.ApiKey.Placeholder}
-            value={accessStore.googleApiKey}
-            onChange={(e) => {
-              accessStore.update(
-                (access) => (access.googleApiKey = e.currentTarget.value),
-              );
-            }}
-          />
-        </>
-      ) : null}
+      {/*{!accessStore.hideUserApiKey ? (*/}
+      {/*  <>*/}
+      {/*    <div className={styles["auth-tips"]}>{Locale.Auth.SubTips}</div>*/}
+      {/*    <input*/}
+      {/*      className={styles["auth-input"]}*/}
+      {/*      type="password"*/}
+      {/*      placeholder={Locale.Settings.Access.OpenAI.ApiKey.Placeholder}*/}
+      {/*      value={accessStore.openaiApiKey}*/}
+      {/*      onChange={(e) => {*/}
+      {/*        accessStore.update(*/}
+      {/*          (access) => (access.openaiApiKey = e.currentTarget.value),*/}
+      {/*        );*/}
+      {/*      }}*/}
+      {/*    />*/}
+      {/*    <input*/}
+      {/*      className={styles["auth-input"]}*/}
+      {/*      type="password"*/}
+      {/*      placeholder={Locale.Settings.Access.Google.ApiKey.Placeholder}*/}
+      {/*      value={accessStore.googleApiKey}*/}
+      {/*      onChange={(e) => {*/}
+      {/*        accessStore.update(*/}
+      {/*          (access) => (access.googleApiKey = e.currentTarget.value),*/}
+      {/*        );*/}
+      {/*      }}*/}
+      {/*    />*/}
+      {/*  </>*/}
+      {/*) : null}*/}
 
       <div className={styles["auth-actions"]}>
         <IconButton

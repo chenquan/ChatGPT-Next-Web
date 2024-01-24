@@ -12,7 +12,7 @@ const cn = {
   },
   Auth: {
     Title: "需要密码",
-    Tips: "管理员开启了密码验证，请在下方填入访问码（如不知道访问密码可查看[帮助手册](https://digiinfr.yuque.com/qwrtr8/lbnlea)）",
+    Tips: "管理员开启了密码验证，请在下方填入访问码，如不知道访问密码可查看",
     SubTips: "或者输入你的 OpenAI 或 Google API 密钥",
     Input: "在此处填写访问码",
     Confirm: "确认",
